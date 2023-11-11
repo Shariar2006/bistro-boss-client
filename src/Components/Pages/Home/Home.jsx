@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import Featured from "./Featured";
 import PopularMenu from "./PopularMenu";
 import Swipar from "./Swipar";
+import Testimonials from "./Testimonials";
 
 
 const Home = () => {
@@ -16,11 +17,14 @@ const Home = () => {
                 ></SectionTitle>
                 <Swipar></Swipar>
             </div>
-            <div className="my-10">
+            <div className="my-14">
                 <PopularMenu></PopularMenu>
             </div>
-            <div>
+            <div className="mb-10">
                 <Featured></Featured>
+            </div>
+            <div>
+                <Testimonials></Testimonials>
             </div>
         </div>
     );
