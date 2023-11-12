@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import Cover from "../../Cover/Cover";
 import PopularFood from "../Home/PopularFood";
 
@@ -15,6 +16,9 @@ const MenuCategory = ({items, title, img}) => {
                 {
                     items?.map(item => <PopularFood key={item._id} item={item}></PopularFood>)
                 }
+            </div>
+            <div className="card-actions justify-center">
+            <Link to={`/order/${title}`}><button className="btn btn-outline text-center text-[#BB8506] mt-4 border-0 border-b-4">Order Now</button></Link>
             </div>
         </div>
     );
