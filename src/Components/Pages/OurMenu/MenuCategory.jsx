@@ -5,6 +5,7 @@ import PopularFood from "../Home/PopularFood";
 
 
 const MenuCategory = ({items, title, img}) => {
+    console.log(title)
     return (
         <div className="my-10">
             <div className="my-8">

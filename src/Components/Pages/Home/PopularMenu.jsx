@@ -9,7 +9,7 @@ const PopularMenu = () => {
     // const [menu, setMenu] = useState()
 
     // useEffect(() => {
-    //     fetch('/Menu.json')
+    //     fetch('http://localhost:5000/foodMenu')
     //         .then(res => res.json())
     //         .then(data => {
     //             const popularFood = data.filter(item => item.category === 'popular')

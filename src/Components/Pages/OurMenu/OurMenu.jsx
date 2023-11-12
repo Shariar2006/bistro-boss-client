@@ -31,16 +31,16 @@ const OurMenu = () => {
                 <MenuCategory items={offered} img={menuPageCover}></MenuCategory>
             </div>
             <div className=''>
-                <MenuCategory items={desserts} img={dessert} title='Desserts'></MenuCategory>
+                <MenuCategory items={desserts} img={dessert} title='dessert'></MenuCategory>
             </div>
             <div>
-                <MenuCategory items={pizzas} img={pizza} title='Pizzas'></MenuCategory>
+                <MenuCategory items={pizzas} img={pizza} title='pizza'></MenuCategory>
             </div>
             <div>
-                <MenuCategory items={salads} img={salad} title='Salads'></MenuCategory>
+                <MenuCategory items={salads} img={salad} title='salad'></MenuCategory>
             </div>
             <div>
-                <MenuCategory items={soups} img={soup} title='Soups'></MenuCategory>
+                <MenuCategory items={soups} img={soup} title='soup'></MenuCategory>
             </div>
             
         </div>

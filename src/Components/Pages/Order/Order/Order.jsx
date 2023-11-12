@@ -8,10 +8,12 @@ import CardFood from "../../../CardFood/CardFood";
 import { useParams } from "react-router-dom";
 
 const Order = () => {
-    
-    const [menu] = useMenu()
-
+    const categories = ['dessert', 'pizza', 'soup', 'salad', 'drinks']
     const {category} = useParams()
+    const initialIndex = categories.indexOf(category)
+    const [tabIndex, setTabIndex] = useState(initialIndex)
+    const [menu] = useMenu()
+    console.log(initialIndex)
     console.log(category)
 
     const desserts = menu.filter(item => item.category === 'dessert')
@@ -20,7 +22,6 @@ const Order = () => {
     const soups = menu.filter(item => item.category === 'soup')
     const drinks = menu?.filter(item => item.category === 'drinks')
 
-    const [tabIndex, setTabIndex] = useState(0)
     return (
         <div className="space-y-10">
             <Cover img={order} title='Order Food'></Cover>
