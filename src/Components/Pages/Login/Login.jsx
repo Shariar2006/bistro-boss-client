@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../../AuthProvider';
 
 
 const Login = () => {
+    const {login} = useContext(AuthContext)
     const [disable, setDisable] = useState(true)
 
     const captchaRaf = useRef()
@@ -11,12 +13,16 @@ const Login = () => {
         loadCaptchaEnginge(6); 
     },[])
 
-    const handleSubmit = e=>{
+    const handleLogin = e=>{
         e.preventDefault()
         const from = e.target
         const email = from.email.value
         const password = from.password.value
         console.log(email, password)
+        login(email, password)
+        .then(result => {
+            console.log(result.user)
+        })
     }
 
     const handleCaptcha=()=>{
@@ -38,7 +44,7 @@ const Login = () => {
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
                     <div className="card  lg:w-1/2 max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleSubmit} className="card-body">
+                        <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
