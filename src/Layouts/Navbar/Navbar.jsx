@@ -20,7 +20,7 @@ const Navbar = () => {
         <li><Link to='/order/dessert'>Order</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
         <li><Link to='/register'>Register</Link></li>
-        <li><Link to='/'>
+        <li><Link to='/dashboard/cart'>
             <button className="btn">
             <MdOutlineShoppingCart />
                 <div className="badge badge-secondary">+{cart.length}</div>
@@ -36,8 +36,8 @@ const Navbar = () => {
 
     </div>
     return (
-        <div className="max-w-6xl">
-            <div className="navbar fixed z-10 opacity-70 text-white bg-black max-w-7xl">
+        <div className="max-w-7xl">
+            <div className="navbar z-10 opacity-70 text-white bg-black max-w-7xl">
                 <div className="mx-auto">
                     <div className="navbar-start">
                         <div className="dropdown">
