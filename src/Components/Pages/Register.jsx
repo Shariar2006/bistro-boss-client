@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../AuthProvider";
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm()
-    const {createUser} = useContext(AuthContext)
+    const {createUser, logOut} = useContext(AuthContext)
 
     const onSubmit = (data) => {
         
         createUser(data.email, data.password )
         .then(result=>{
             console.log(result.user)
+            logOut()
         })
     }
 
@@ -58,6 +60,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Register" />
                             </div>
+                            <h1>Already have an account? <Link to='/login' className="text-blue-600 underline">Please Login</Link></h1>
                         </form>
                     </div>
                 </div>
