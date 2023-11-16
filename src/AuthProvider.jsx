@@ -2,13 +2,14 @@
 // import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "./Firebase/Firebase.config";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const googleProvider = new GoogleAuthProvider()
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -20,10 +21,29 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const googleLogin = ()=>{
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider)
+    }
+
     const logOut = ()=>{
         setLoading(true)
         return signOut(auth)
     }
+
+    const handleUpdateProfile = (name, img) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: img,
+        })
+            .then(() => {
+                // Profile updated!
+                // ...
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -41,7 +61,9 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         login,
-        logOut
+        logOut,
+        handleUpdateProfile,
+        googleLogin
     }
     return (
         <AuthContext.Provider value={authInfo}>

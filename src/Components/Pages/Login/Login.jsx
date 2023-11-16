@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../../AuthProvider';
 import { toast } from 'react-toastify';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import GoogleLogin from '../../SocalLogin/GoogleLogin';
 
 
 
@@ -12,6 +13,8 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const form = location.state?.from?.pathname || "/"
+
+
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -25,12 +28,15 @@ const Login = () => {
         console.log(email, password)
         login(email, password)
             .then(result => {
+
                 console.log(result.user)
                 toast('successfully login')
-                navigate(form, {replace: true})
+                navigate(form, { replace: true })
             })
             .catch(error => { console.log(error) })
     }
+
+    
 
     const handleCaptcha = (e) => {
         const captchaValue = e.target.value
@@ -77,7 +83,8 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <input disabled={disable} className="btn btn-primary" type="submit" value="Login" />
                             </div>
-
+                        <GoogleLogin></GoogleLogin>
+                            <h1>New to Bistro Boss? <Link to='/register' className="text-blue-600 underline">Please Register</Link></h1>
                         </form>
                     </div>
                 </div>
