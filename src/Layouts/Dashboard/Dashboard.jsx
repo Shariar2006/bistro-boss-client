@@ -6,13 +6,14 @@ import { MdPayment } from "react-icons/md";
 import { VscPreview } from "react-icons/vsc";
 import { RiMenuLine } from "react-icons/ri";
 import { TfiEmail } from "react-icons/tfi";
+import useAdmin from "../../Components/Hooks/useAdmin";
 
 
 
 
 
 const Dashboard = () => {
-    const isAdmin = true
+    const [isAdmin] = useAdmin()
     return (
         <div className="flex max-w-7xl mx-auto">
             <div className="w-64 min-h-screen bg-orange-600 p-2">
