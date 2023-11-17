@@ -1,12 +1,12 @@
 import { FaTrashCan } from "react-icons/fa6";
 import useCart from "../../Hooks/useCart";
 import Swal from "sweetalert2";
-import useAxios from "../../Hooks/useAxios";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const MyCart = () => {
     const [cart, refetch] = useCart()
-    const axiosSource = useAxios()
+    const axiosSource = useAxiosPublic()
     const totalPrice = cart.reduce((total, item) => total + item.price, 0)
     const handleDelete = id => {
         Swal.fire({

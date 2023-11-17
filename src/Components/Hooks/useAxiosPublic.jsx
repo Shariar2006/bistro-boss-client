@@ -4,8 +4,8 @@ const axiosSource = axios.create({
     baseURL: 'http://localhost:5000'
 })
 
-const useAxios = () => {
+const useAxiosPublic = () => {
     return axiosSource
 };
 
-export default useAxios;
+export default useAxiosPublic;

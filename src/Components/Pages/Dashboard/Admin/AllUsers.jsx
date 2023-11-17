@@ -1,11 +1,11 @@
 import { FaTrashCan } from "react-icons/fa6";
 import {  FaUsers } from "react-icons/fa";
-import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllUsers = () => {
-    const axiosSource = useAxios()
+    const axiosSource = useAxiosSecure()
     const {data, refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async()=>{

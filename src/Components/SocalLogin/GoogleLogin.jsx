@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider";
-import useAxios from "../Hooks/useAxios";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 
 const GoogleLogin = () => {
@@ -11,7 +11,7 @@ const GoogleLogin = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const form = location.state?.from?.pathname || "/"
-    const axiosSource = useAxios()
+    const axiosSource = useAxiosPublic()
 
 
     const handleGoogleLogin = () => {

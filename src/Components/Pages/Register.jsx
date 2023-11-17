@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
-import useAxios from "../Hooks/useAxios";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm()
     const { createUser, logOut, handleUpdateProfile } = useContext(AuthContext)
     const navigate = useNavigate()
-    const axiosSource = useAxios()
+    const axiosSource = useAxiosPublic()
 
     const onSubmit = (data) => {
 
