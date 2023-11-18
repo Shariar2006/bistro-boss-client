@@ -7,6 +7,8 @@ import { VscPreview } from "react-icons/vsc";
 import { RiMenuLine } from "react-icons/ri";
 import { TfiEmail } from "react-icons/tfi";
 import useAdmin from "../../Components/Hooks/useAdmin";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider";
 
 
 
@@ -14,6 +16,10 @@ import useAdmin from "../../Components/Hooks/useAdmin";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
+    const {user, loading} = useContext(AuthContext)
+    if(loading){
+        return <h1>loading</h1>
+    }
     return (
         <div className="flex max-w-7xl mx-auto">
             <div className="w-64 min-h-screen bg-orange-600 p-2">

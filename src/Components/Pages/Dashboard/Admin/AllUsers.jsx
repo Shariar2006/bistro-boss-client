@@ -3,6 +3,7 @@ import {  FaUsers } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import SectionTitle from "../../../SectionTitle/SectionTitle";
 
 const AllUsers = () => {
     const axiosSource = useAxiosSecure()
@@ -69,6 +70,9 @@ const AllUsers = () => {
 
     return (
         <div>
+            <div className="mt-5">
+            <SectionTitle subtitle='How Many??' headerTitle='MANAGE ALL USERS'></SectionTitle>
+            </div>
             <div className="w-11/12 mx-auto p-5 ">
                 <h2 className="text-4xl font-semibold">Total Order: {data?.length}</h2>
             </div>
