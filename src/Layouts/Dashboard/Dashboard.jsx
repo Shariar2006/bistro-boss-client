@@ -16,8 +16,8 @@ import { AuthContext } from "../../AuthProvider";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
-    const {user, loading} = useContext(AuthContext)
-    if(loading){
+    const { loading } = useContext(AuthContext)
+    if (loading) {
         return <h1>loading</h1>
     }
     return (
@@ -26,21 +26,21 @@ const Dashboard = () => {
                 <ul className="menu">
                     {
                         isAdmin ? <>
-                        <li className=""><NavLink to='/dashboard/adminHome' className=''>
-                    <FaHouse />Admin Home</NavLink></li>
+                            <li className=""><NavLink to='/dashboard/adminHome' className=''>
+                                <FaHouse />Admin Home</NavLink></li>
 
-                    <li className=""><NavLink to='/dashboard/addItems' className=''>
-                    <FaUtensils />
-                    Add Items</NavLink></li>
+                            <li className=""><NavLink to='/dashboard/addItems' className=''>
+                                <FaUtensils />
+                                Add Items</NavLink></li>
 
-                    <li className=""><NavLink to='/dashboard/manageItem' className=''>
-                    <FaList />Manage Items</NavLink></li>
+                            <li className=""><NavLink to='/dashboard/manageItem' className=''>
+                                <FaList />Manage Items</NavLink></li>
 
-                    <li className=""><NavLink to='/dashboard/manageBookings' className=''>
-                    <FaBook /> Manage bookings</NavLink></li>
+                            <li className=""><NavLink to='/dashboard/manageBookings' className=''>
+                                <FaBook /> Manage bookings</NavLink></li>
 
-                    <li className=""><NavLink to='/dashboard/allUser' className=''>
-                    <FaUsers /> All User</NavLink></li>
+                            <li className=""><NavLink to='/dashboard/allUser' className=''>
+                                <FaUsers /> All User</NavLink></li>
                         </>
                             :
                             <>

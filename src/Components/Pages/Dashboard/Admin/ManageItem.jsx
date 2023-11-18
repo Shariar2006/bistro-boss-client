@@ -1,14 +1,15 @@
 import { FaTrashCan } from "react-icons/fa6";
-import useCart from "../../Hooks/useCart";
+import useMenu from "../../../Hooks/UseMenu";
+import SectionTitle from "../../../SectionTitle/SectionTitle";
+import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
+const ManageItem = () => {
+    const [menu, , refetch] = useMenu()
+    const axiosSource = useAxiosSecure()
 
-const MyCart = () => {
-    const [cart, refetch] = useCart()
-    const axiosSource = useAxiosPublic()
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0)
-    const handleDelete = id => {
+    const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -19,12 +20,13 @@ const MyCart = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSource.delete(`/carts/${id}`)
+                axiosSource.delete(`/foodMenu/${id}`)
                     .then(res => {
+                        console.log(res.data)
                         if (res.data.deletedCount>0) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "This food has been deleted.",
+                                text: 'This food has been deleted.',
                                 icon: "success"
                               });
                               refetch()
@@ -33,12 +35,15 @@ const MyCart = () => {
             }
         });
     }
+
     return (
         <div>
+            <div className="mt-5">
+                <SectionTitle subtitle='Hurry Up!' headerTitle='MANAGE ALL ITEMS'></SectionTitle>
+            </div>
+            <div>
             <div className="w-11/12 mx-auto p-5 flex justify-between">
-                <h2 className="text-4xl font-semibold">Total Order: {cart.length}</h2>
-                <h2 className="text-4xl font-semibold">Total Price: {totalPrice}</h2>
-                <h2 className="btn btn-primary">Pay</h2>
+                <h2 className="text-4xl font-semibold">Total Order: {menu.length}</h2>
             </div>
 
 
@@ -53,11 +58,12 @@ const MyCart = () => {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            cart?.map((item, index) => <tr key={item._id}>
+                            menu?.map((item, index) => <tr key={item._id}>
                                 <th>
                                     <label>
                                         {index + 1}
@@ -80,6 +86,9 @@ const MyCart = () => {
                                     $ {item?.price}
                                 </td>
                                 <th>
+                                    <button className="btn btn-ghost btn-lg "><FaEdit /></button>
+                                </th>
+                                <th>
                                     <button onClick={() => { handleDelete(item?._id) }} className="btn btn-ghost btn-lg text-red-500"><FaTrashCan /></button>
                                 </th>
                             </tr>)
@@ -92,7 +101,8 @@ const MyCart = () => {
                 </table>
             </div>
         </div>
+        </div>
     );
 };
 
-export default MyCart;
+export default ManageItem;
