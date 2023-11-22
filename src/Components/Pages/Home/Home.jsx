@@ -37,6 +37,7 @@ const Home = () => {
             <div>
                 <Testimonials></Testimonials>
             </div>
+            
         </div>
     );
 };

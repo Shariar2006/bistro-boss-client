@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import useCart from "../../Components/Hooks/useCart";
+import useAdmin from "../../Components/Hooks/useAdmin";
 
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [isAdmin] = useAdmin()
     const handleLogOut = () => {
         logOut()
     }
@@ -20,12 +22,21 @@ const Navbar = () => {
         <li><Link to='/order/dessert'>Order</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
         <li><Link to='/register'>Register</Link></li>
+        {
+            user && isAdmin && <li><Link to='/dashboard/adminHome'>
+            <button className="btn">Dashboard</button>
+        </Link></li>
+        }
+        {
+            user && !isAdmin && 
         <li><Link to='/dashboard/cart'>
             <button className="btn">
             <MdOutlineShoppingCart />
                 <div className="badge badge-secondary">+{cart.length}</div>
             </button>
         </Link></li>
+        }
+
         {
             user ? <>
                 <button className="btn" onClick={handleLogOut}>Log Out</button>

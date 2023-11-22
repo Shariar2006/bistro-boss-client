@@ -1,7 +1,8 @@
 import { FaTrashCan } from "react-icons/fa6";
-import useCart from "../../Hooks/useCart";
+import useCart from "../../../Hooks/useCart";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { Link } from "react-router-dom";
 
 
 const MyCart = () => {
@@ -21,13 +22,13 @@ const MyCart = () => {
             if (result.isConfirmed) {
                 axiosSource.delete(`/carts/${id}`)
                     .then(res => {
-                        if (res.data.deletedCount>0) {
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "This food has been deleted.",
                                 icon: "success"
-                              });
-                              refetch()
+                            });
+                            refetch()
                         }
                     })
             }
@@ -38,7 +39,13 @@ const MyCart = () => {
             <div className="w-11/12 mx-auto p-5 flex justify-between">
                 <h2 className="text-4xl font-semibold">Total Order: {cart.length}</h2>
                 <h2 className="text-4xl font-semibold">Total Price: {totalPrice}</h2>
-                <h2 className="btn btn-primary">Pay</h2>
+                {
+                    cart?.length > 0 ? 
+                    <Link to='/dashboard/payment'>
+                    <button className="btn btn-primary">Pay</button>
+                </Link>: 
+                <button disabled className="btn btn-primary">Pay</button>
+                }
             </div>
 
 
