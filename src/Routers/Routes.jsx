@@ -89,7 +89,7 @@ import UserHome from "../Components/Pages/Dashboard/NormalUser/UserHome";
         {
           path: 'updateItem/:id',
           element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/foodMenu/${params.id}`)
+          loader: ({params})=> fetch(`https://bistro-boss-server-beige-six.vercel.app/foodMenu/${params.id}`)
         },
       ]
     }

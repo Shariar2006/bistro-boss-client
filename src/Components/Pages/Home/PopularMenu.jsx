@@ -9,7 +9,7 @@ const PopularMenu = () => {
     // const [menu, setMenu] = useState()
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/foodMenu')
+    //     fetch('https://bistro-boss-server-beige-six.vercel.app/foodMenu')
     //         .then(res => res.json())
     //         .then(data => {
     //             const popularFood = data.filter(item => item.category === 'popular')
